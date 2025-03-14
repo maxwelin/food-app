@@ -1,0 +1,18 @@
+.wrapper {
+  min-height: 100vh;
+  position: relative;
+  box-shadow: 20px 0px 30px rgba(0, 0, 0, 0.15);
+  padding: 5rem;
+}
+
+.searchInput {
+  border-radius: 16px;
+  width: 384px;
+  min-height: 40px;
+}
+
+.h2 {
+  position: absolute;
+  font-size: 2em;
+  top: 5rem;
+}
