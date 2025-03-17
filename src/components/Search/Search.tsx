@@ -1,7 +1,8 @@
 import FoodCard from "../FoodCard";
 import { FoodContext } from "../providers/FoodContext";
-import styles from "./Search.module.css";
 import { useContext } from "react";
+import styles from "./Search.module.css";
+import Searchbar from "./Searchbar";
 
 interface FoodItem {
   idMeal: string;
@@ -9,15 +10,13 @@ interface FoodItem {
   strCategory: string;
   strArea: string;
   strMealThumb: string;
+  ingredients: string[];
+  measures: string[];
+  instructions: string;
 }
 
 const Search = () => {
-  const { searchVal, setSearchVal, searchData, handleClick } =
-    useContext(FoodContext);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchVal(e.target.value);
-  };
+  const { searchData, error } = useContext(FoodContext);
 
   const hasSearchData = searchData.length > 0;
 
@@ -28,34 +27,7 @@ const Search = () => {
       <h2 className={`text-black ${styles.h2}`}>
         Let's find your next recipe!{" "}
       </h2>
-      <label
-        className={`input bg-neutral-50 border-neutral-400 mb-8 mt-16 ${styles.searchInput}`}
-      >
-        <svg
-          className="h-[1em] opacity-50 text-black"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-        >
-          <g
-            strokeLinejoin="round"
-            strokeLinecap="round"
-            strokeWidth="2.5"
-            fill="none"
-            stroke="currentColor"
-          >
-            <circle cx="11" cy="11" r="8"></circle>
-            <path d="m21 21-4.3-4.3"></path>
-          </g>
-        </svg>
-        <input
-          type="search"
-          required
-          placeholder="Search"
-          value={searchVal}
-          onChange={handleChange}
-          className="bg-neutral-50 text-black border-none"
-        />
-      </label>
+      <Searchbar />
       <ul>
         {hasSearchData ? (
           searchData.map((meal: FoodItem, index: number) => (
@@ -69,8 +41,11 @@ const Search = () => {
             </li>
           ))
         ) : (
-          <li className="text-black mt-4">No meals found</li>
+          <li className="text-black mt-4">
+            We couldn't find any meals that match your search.
+          </li>
         )}
+        {error ? <p className="text-black mt-4">{error}</p> : <p></p>}
       </ul>
     </div>
   );
