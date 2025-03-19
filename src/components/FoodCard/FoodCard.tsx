@@ -1,5 +1,5 @@
 import styles from "./FoodCard.module.css";
-import { FoodContext } from "./providers/FoodContext";
+import { FoodContext } from "../providers/FoodContext";
 import { useContext } from "react";
 
 interface Props {

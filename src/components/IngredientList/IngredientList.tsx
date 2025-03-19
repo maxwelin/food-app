@@ -22,7 +22,7 @@ const IngredientList = () => {
       </div>
     );
   } else {
-    return <p></p>;
+    return;
   }
 };
 export default IngredientList;

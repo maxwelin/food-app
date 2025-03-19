@@ -1,4 +1,4 @@
-import FoodCard from "../FoodCard";
+import FoodCard from "../FoodCard/FoodCard";
 import { FoodContext } from "../providers/FoodContext";
 import { useContext } from "react";
 import styles from "./Search.module.css";
@@ -16,7 +16,7 @@ interface FoodItem {
 }
 
 const Search = () => {
-  const { searchData, error } = useContext(FoodContext);
+  const { searchData, error, reset } = useContext(FoodContext);
 
   const hasSearchData = searchData.length > 0;
 
@@ -28,6 +28,9 @@ const Search = () => {
         Let's find your next recipe!{" "}
       </h2>
       <Searchbar />
+      <button className="btn bg-white border-neutral-400 mb-4" onClick={reset}>
+        Reset
+      </button>
       <ul>
         {hasSearchData ? (
           searchData.map((meal: FoodItem, index: number) => (

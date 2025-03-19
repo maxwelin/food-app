@@ -1,4 +1,5 @@
 .hero {
-  height: 50vh;
+  height: 35svh;
   width: 100%;
+  background-position: 0 -305px;
 }

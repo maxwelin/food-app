@@ -3,7 +3,7 @@ import { useContext } from "react";
 import styles from "./Search.module.css";
 
 const Searchbar = () => {
-  const { searchVal, setSearchVal } = useContext(FoodContext);
+  const { searchVal, setSearchVal, inputRef } = useContext(FoodContext);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchVal(e.target.value);
@@ -11,7 +11,7 @@ const Searchbar = () => {
 
   return (
     <label
-      className={`input bg-neutral-50 border-neutral-400 mb-8 mt-16 ${styles.searchInput}`}
+      className={`input bg-white border-neutral-400 mb-4 mt-16 ${styles.searchInput}`}
     >
       <svg
         className="h-[1em] opacity-50 text-black"
@@ -30,12 +30,13 @@ const Searchbar = () => {
         </g>
       </svg>
       <input
+        ref={inputRef}
         type="search"
         required
         placeholder="Search"
         value={searchVal}
         onChange={handleChange}
-        className="bg-neutral-50 text-black border-none"
+        className="bg-white text-black border-none"
       />
     </label>
   );
