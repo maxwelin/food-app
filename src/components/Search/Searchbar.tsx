@@ -3,7 +3,7 @@ import { useContext } from "react";
 import styles from "./Search.module.css";
 
 const Searchbar = () => {
-  const { searchVal, setSearchVal, inputRef } = useContext(FoodContext);
+  const { searchVal, setSearchVal, inputRef }: any = useContext(FoodContext);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchVal(e.target.value);
@@ -32,7 +32,6 @@ const Searchbar = () => {
       <input
         ref={inputRef}
         type="search"
-        required
         placeholder="Search"
         value={searchVal}
         onChange={handleChange}

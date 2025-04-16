@@ -16,23 +16,21 @@ interface FoodItem {
 }
 
 const Search = () => {
-  const { searchData, error, reset } = useContext(FoodContext);
-
-  const hasSearchData = searchData.length > 0;
+  const { searchData, error, reset }: any = useContext(FoodContext);
 
   return (
     <div
       className={`bg-neutral-50 flex flex-col items-center ${styles.wrapper}`}
     >
       <h2 className={`text-black ${styles.h2}`}>
-        Let's find your next recipe!{" "}
+        Let's find your next recipe!
       </h2>
       <Searchbar />
       <button className="btn bg-white border-neutral-400 mb-4" onClick={reset}>
         Reset
       </button>
       <ul>
-        {hasSearchData ? (
+        {searchData.length > 0 ? (
           searchData.map((meal: FoodItem, index: number) => (
             <li key={index}>
               <FoodCard

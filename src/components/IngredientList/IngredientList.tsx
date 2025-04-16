@@ -3,7 +3,7 @@ import { useContext } from "react";
 import styles from "./IngredientList.module.css";
 
 const IngredientList = () => {
-  const { ingredientList, measuresList } = useContext(FoodContext);
+  const { ingredientList, measuresList }: any = useContext(FoodContext);
 
   if (ingredientList && ingredientList.length > 0) {
     return (

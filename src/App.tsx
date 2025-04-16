@@ -10,9 +10,9 @@ function App() {
     <div className="min-h-screen flex flex-row">
       <FoodContextProvider>
         <Search />
-        <div style={{ width: "100%" }}>
+        <div className="w-[100%]">
           <Hero />
-          <div style={{ display: "flex" }}>
+          <div className="flex">
             <IngredientList />
             <Instructions />
           </div>

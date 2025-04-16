@@ -3,7 +3,7 @@ import { FoodContext } from "../providers/FoodContext";
 import { useContext } from "react";
 
 const Instructions = () => {
-  const { instructions } = useContext(FoodContext);
+  const { instructions }: any = useContext(FoodContext);
 
   if (instructions && instructions.length > 0) {
     return (
@@ -12,7 +12,13 @@ const Instructions = () => {
         <ul
           className={`list-discspace-y-3 bg-gray-100 p-4 rounded-3xl mt-4 ${styles.ul}`}
         >
-          <li className="text-xl text-gray-800">{instructions}</li>
+          <li className="text-xl text-gray-800">
+            {instructions.split("\r\n").map((instr: string, idx: number) => (
+              <p className="mb-3" key={idx}>
+                {instr}
+              </p>
+            ))}
+          </li>
         </ul>
       </div>
     );

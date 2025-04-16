@@ -7,7 +7,7 @@ const Hero = () => {
     heroImg = "/food.png",
     heroTitle = "Meal Name",
     heroP = "",
-  } = useContext(FoodContext);
+  }: any = useContext(FoodContext);
 
   return (
     <div

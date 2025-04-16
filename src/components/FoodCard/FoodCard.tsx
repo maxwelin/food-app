@@ -10,7 +10,7 @@ interface Props {
 }
 
 const FoodCard = ({ img, meal, area, category }: Props) => {
-  const { handleClick } = useContext(FoodContext);
+  const { handleClick }: any = useContext(FoodContext);
 
   return (
     <div

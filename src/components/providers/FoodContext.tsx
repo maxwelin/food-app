@@ -21,7 +21,7 @@ interface ContextProps {
   setHeroTitle: React.Dispatch<React.SetStateAction<string>>;
   heroP: string;
   setHeroP: React.Dispatch<React.SetStateAction<string>>;
-  inputRef: React.RefObject<HTMLInputElement>;
+  inputRef: React.RefObject<HTMLInputElement | null>;
   reset: () => void;
 }
 
@@ -67,26 +67,27 @@ const FoodContextProvider = ({ children }: ProviderProps) => {
       const h2Element = listItem.querySelector("h2");
       if (h2Element) {
         getClickedItemData(h2Element.innerText);
-        console.log(ingredientList);
       }
     }
   };
 
-  const inputRef = useRef(null);
+  const inputRef = useRef<HTMLInputElement | null>(null);
 
   const debouncedSearchValue = useDebounce(searchVal, 400);
 
   const reset = () => {
-    inputRef.current.focus();
-    setHeroImg("./grill.png");
-    setHeroTitle("Hungry? Let's find your next recipe!");
-    setHeroP(
-      "Use the search bar on the left to quickly discover new recipes and find the perfect dish to satisfy your cravings."
-    );
-    setSearchVal("");
-    setIngredientList([]);
-    setInstructions([]);
-    setMeasuresList([]);
+    if (inputRef) {
+      inputRef.current?.focus();
+      setHeroImg("./grill.png");
+      setHeroTitle("Hungry? Let's find your next recipe!");
+      setHeroP(
+        "Use the search bar on the left to quickly discover new recipes and find the perfect dish to satisfy your cravings."
+      );
+      setSearchVal("");
+      setIngredientList([]);
+      setInstructions("");
+      setMeasuresList([]);
+    }
   };
 
   useEffect(() => {
@@ -106,7 +107,7 @@ const FoodContextProvider = ({ children }: ProviderProps) => {
     }
   }
 
-  const setStates = (clickedItem: FoodItem) => {
+  const setHeroVariables = (clickedItem: any) => {
     setHeroImg(clickedItem.strMealThumb || ".food.png");
     setHeroTitle(clickedItem.strMeal);
     setInstructions(clickedItem.strInstructions);
@@ -130,7 +131,8 @@ const FoodContextProvider = ({ children }: ProviderProps) => {
       const data: ApiResponse = await response.json();
       const clickedItem = data.meals[0];
       if (clickedItem) {
-        setStates(clickedItem);
+        console.log(clickedItem);
+        setHeroVariables(clickedItem);
       }
     } catch (error: any) {
       setError("Could not retrieve data, please try again later.");
